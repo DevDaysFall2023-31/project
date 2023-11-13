@@ -4,6 +4,7 @@
 
 > Prerequisites:
 > - docker, docker compose
+> - supabase cli (for local development)
 
 1. Configure environment
 ```
@@ -13,6 +14,8 @@ vim .env
 
 2. Build images and start
 ```
+supabase start
+
 docker compose build
 docker compose up -d
 ```

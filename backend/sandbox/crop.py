@@ -1,3 +1,4 @@
+from app.settings import AppSettings
 from pydub import AudioSegment
 from dotenv import load_dotenv
 from supabase import create_client, Client
@@ -9,7 +10,7 @@ AUDIO_DIR: str = "audio"
 CROPPED_DIR: str = "cropped"
 
 def crop_audio(filename: str) -> None:
-    full_filename: str = AUDIO_DIR + "/" + filename 
+    full_filename: str = AUDIO_DIR + "/" + filename
     song = AudioSegment.from_mp3(full_filename)
     song_mid: int = len(song) // 2
     five_seconds: int = 5 * SECOND
@@ -18,14 +19,11 @@ def crop_audio(filename: str) -> None:
 
 
 if __name__ == "__main__":
-    load_dotenv()
+    settings = AppSettings()
 
-    url = os.environ.get("SUPABASE_URL")
-    key = os.environ.get("SUPABASE_KEY")
-    
     crop_audio("Mozart.mp3")
 
-    supabase: Client = create_client(url, key)
+    supabase: Client = create_client(settings.supabase_address, settings.supabase_token)
     bucket_name: str = "test"
 
     data = supabase.storage.from_(bucket_name).list()
@@ -39,5 +37,5 @@ if __name__ == "__main__":
                     path=file,
                     file_options={"content-type": "audio/mpeg"}
                 )
-    
+
     print(supabase.storage.from_(bucket_name).create_signed_url(path="Mozart.mp3", expires_in=60))
