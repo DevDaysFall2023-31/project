@@ -1,5 +1,14 @@
 version: "3.9"
 services:
+  ui:
+    build:
+      context: ui
+      network: host
+    env_file:
+      - .env
+    ports:
+      - "80:80"
+
   backend:
     build:
       context: backend
@@ -7,4 +16,4 @@ services:
     env_file:
       - .env
     ports:
-      - "80:80"
+      - "8080:80"
