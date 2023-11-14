@@ -16,5 +16,6 @@ class TracksRepository:
         similar = similar or []
         return [track.track_id for track in similar]
 
-    async def download_track(self, track_id: str):
-        raise NotImplementedError()
+    async def download_track(self, track_id: str, path: str):
+        download_info = (await self.ya_music.tracks_download_info(track_id))[0]
+        await download_info.download_async(path)
