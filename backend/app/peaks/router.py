@@ -6,6 +6,7 @@ from starlette.status import HTTP_404_NOT_FOUND
 
 from app.peaks.dependencies import get_peaks_repository
 from app.peaks.repository import PeaksRepository
+from app.peaks.schemas import GetPeakSchema
 from app.peaks.worker import PeaksWorker
 from app.tracks.dependencies import get_tracks_repository
 from app.tracks.repository import TracksRepository
@@ -18,7 +19,7 @@ async def get_peak(
     track_id: str,
     peaks_repo: Annotated[PeaksRepository, Depends(get_peaks_repository)],
     tracks_repo: Annotated[TracksRepository, Depends(get_tracks_repository)],
-) -> str:
+) -> GetPeakSchema:
     peak_url = peaks_repo.get_peak(track_id)
 
     if not peak_url:
@@ -29,4 +30,7 @@ async def get_peak(
             status_code=HTTP_404_NOT_FOUND,
         )
 
-    return peak_url
+    return GetPeakSchema(
+        track_id=track_id,
+        download_url=peak_url,
+    )

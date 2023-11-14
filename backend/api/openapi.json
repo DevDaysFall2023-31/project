@@ -15,11 +15,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array",
-                  "title": "Response Get Favourite Tracks Tracks Favourites Get"
+                  "$ref": "#/components/schemas/GetTracksListSchema"
                 }
               }
             }
@@ -48,11 +44,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
-                  "title": "Response Get Similar Tracks Tracks  Track Id  Similar Get"
+                  "$ref": "#/components/schemas/GetTracksListSchema"
                 }
               }
             }
@@ -91,8 +83,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "title": "Response Get Peak Peaks  Track Id  Get"
+                  "$ref": "#/components/schemas/GetPeakSchema"
                 }
               }
             }
@@ -113,6 +104,127 @@
   },
   "components": {
     "schemas": {
+      "GetArtistSchema": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "cover_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "cover_url"
+        ],
+        "title": "GetArtistSchema"
+      },
+      "GetPeakSchema": {
+        "properties": {
+          "track_id": {
+            "type": "string",
+            "title": "Track Id"
+          },
+          "download_url": {
+            "type": "string",
+            "title": "Download Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "track_id",
+          "download_url"
+        ],
+        "title": "GetPeakSchema"
+      },
+      "GetTrackSchema": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "artists": {
+            "items": {
+              "$ref": "#/components/schemas/GetArtistSchema"
+            },
+            "type": "array",
+            "title": "Artists"
+          },
+          "cover_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "artists",
+          "cover_url"
+        ],
+        "title": "GetTrackSchema"
+      },
+      "GetTracksListSchema": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "tracks": {
+            "items": {
+              "$ref": "#/components/schemas/GetTrackSchema"
+            },
+            "type": "array",
+            "title": "Tracks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "count",
+          "tracks"
+        ],
+        "title": "GetTracksListSchema"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
