@@ -7,7 +7,7 @@ class TracksRepository:
         self.ya_music = ya_music
 
     async def get_liked_tracks(self) -> List[Track]:
-        tracks = await self.ya_music.users_likes_tracks()
+        tracks = await self.ya_music.users_likes_tracks(timeout=100)
         tracks = (await tracks.fetch_tracks_async()) if tracks else []
         return tracks
 
