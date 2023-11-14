@@ -14,7 +14,7 @@ class PeaksRepository:
                 self.supabase.storage.from_(self.bucket_name).list(),
             )
         )
-        if id not in uploaded:
+        if f'{id}.mp3' not in uploaded:
             return None
 
         return str(
