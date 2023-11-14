@@ -17,11 +17,9 @@ class PeaksRepository:
         if f'{id}.mp3' not in uploaded:
             return None
 
-        return str(
-            self.supabase.storage.from_(self.bucket_name).create_signed_url(
-                path=f"{id}.mp3", expires_in=60
-            )
-        )
+        return self.supabase.storage.from_(self.bucket_name).create_signed_url(
+            path=f"{id}.mp3", expires_in=60
+        )['signedURL']
 
     def add_peak(self, file: str, id: str):
         self.supabase.storage.from_(self.bucket_name).upload(
