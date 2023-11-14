@@ -4,7 +4,7 @@ services:
     build:
       context: backend
       network: host
-    environment:
-      YA_TOKEN: "${YA_TOKEN}"
+    env_file:
+      - .env
     ports:
       - "80:80"
