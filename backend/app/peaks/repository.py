@@ -5,7 +5,7 @@ from supabase.client import Client as SupabaseClient
 class PeaksRepository:
     def __init__(self, supabase_client: SupabaseClient):
         self.supabase = supabase_client
-        self.bucket_name = "test"
+        self.bucket_name = "y_storage"
 
     def get_peak(self, id: str) -> Optional[str]:
         uploaded: list = list(
