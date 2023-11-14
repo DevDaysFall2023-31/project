@@ -1,0 +1,185 @@
+/* @font-face {
+    font-family: "Quicksand";
+    src: local("Quicksand"),
+    url("../assets/fonts/Quicksand.ttf") format("truetype");
+    font-weight: normal;
+} */
+
+:root {
+    --background-page: #0A0A0A;
+    --background-block: #121212;
+    --font-black: #000000;
+    --font-white: #ffffff;
+    --border-white: rgba(255, 255, 255, .1);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Quicksand, Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--background-page);
+}
+
+.container {
+    margin: auto;
+    width: 1358px;
+    padding: 48px 84px;
+    border-radius: 42px;
+    margin-top: 6px;
+}
+
+.container:last-child {
+    margin-bottom: 6px;
+}
+
+.block {
+    background-color: var(--background-block);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--font-white);
+    position: relative;
+    z-index: 1;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu a {
+    margin-left: 72px;
+    text-decoration: none;
+    color: var(--font-white);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.avatar>img {
+    width: 42px;
+    height: 42px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.mian-block {
+    overflow: hidden;
+}
+
+h1 {
+    color: var(--font-white);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 120%; 
+    margin-top: 40px;
+    margin-bottom: 84px;
+}
+
+.mian-block-header {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.mian-block-header>svg {
+    position: absolute;
+    top: -450px;
+    right: -350px;
+    z-index: 0;
+}
+
+.album-set {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.album {
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.album:nth-child(6n+1) {
+    margin-left: 0;
+}
+
+.album>img {
+    width: 214px;
+    height: 214px;
+    border-radius: 20px;
+    border: 2px solid var(--border-white);
+    object-fit: cover;
+}
+
+.music-block-header {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.music-block-header>img {
+    border-radius: 35px;
+    width: 318px;
+    height: 318px;
+    object-fit: cover;
+}
+
+.music-info {
+    margin-left: 25px;
+    width: 680px;
+}
+
+.music-title {
+    color: var(--font-white);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 15px;
+}
+
+.music-description {
+    color: var(--font-white);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    margin-bottom: 20px;
+}
+
+.activities {
+    display: flex;
+}
+
+.activities>a {
+    display: flex;
+    align-items: center;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    color: var(--font-white);
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.activities span {
+    margin-left: 5px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
