@@ -1,19 +1,41 @@
 version: "3.9"
 services:
+
+  gateway:
+    image: nginx:1.23.1-alpine
+    restart: always
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --no-verbose --tries=1 --spider http://localhost/health || exit 1",
+        ]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+      start_period: 2m
+    depends_on:
+      - api
+      - ui
+    environment:
+      GW_API_URL: http://api
+      GW_SUPABASE_URL: "${SUPABASE_ADDRESS}"
+      GW_UI_URL: http://ui
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/templates/default.conf.template
+    ports:
+      - 80:80
+
   ui:
     build:
       context: ui
       network: host
     env_file:
       - .env
-    ports:
-      - "80:80"
 
-  backend:
+  api:
     build:
       context: backend
       network: host
     env_file:
       - .env
-    ports:
-      - "8080:80"
