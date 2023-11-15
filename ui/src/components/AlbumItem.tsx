@@ -58,7 +58,6 @@ export const AlbumItem: FC<any> = ({ albumInfo, create, count }) => {
         src={LinkCoverMusic(albumInfo.cover_url)}
         alt={albumInfo.title}
       />
-      audio
     </div>
   )
 }

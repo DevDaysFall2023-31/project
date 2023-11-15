@@ -8,7 +8,7 @@ export const Header = () => {
         <a href="#">Избраннное</a>
         <a href="#">Настройки</a>
         <a href="#" className="avatar">
-          <img src="https://proprikol.ru/wp-content/uploads/2020/10/kartinki-nyashki-41.jpg" alt="avatar" />
+          <img src="https://img.freepik.com/premium-vector/flat-instagram-icons-notifications_619991-50.jpg?size=626&ext=jpg" alt="avatar" />
         </a>
       </nav>
     </header>
