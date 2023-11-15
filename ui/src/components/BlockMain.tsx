@@ -23,18 +23,16 @@ export const BlockMain: FC<any> = ({ create }) => {
 
     getTracks();
   }, []);
-
   return (
     <section className="mian-block block container">
       <div className="mian-block-header">
         <h1>Что послушать.</h1>
-        {/* <p>У вас {tracks?.count} треков</p> */}
         <WaveSvg />
       </div>
       <AlbumSet
         tracks={tracks?.tracks ?? []}
         create={create}
-      // count={tracks?.count ?? 0}
+        count={tracks?.count ?? 0}
       />
     </section>
   )
