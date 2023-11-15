@@ -5,9 +5,11 @@ import { BlockMain } from './components/BlockMain';
 import { BlockMusic } from './components/BlockMusic';
 import { YaTokenForm } from './components/YaToken';
 import supabase from './supabase';
+import { GetTrackSchema, GetTracksListSchema } from './generated';
+import api from './api';
 
 function App() {
-  const [blocksMusic, setBlocksMusic] = useState([]);
+  const [blocksMusic, setBlocksMusic] = useState<GetTrackSchema[]>([]);
   const createMusicBlock = (newBlockMusic: never) => {
     setBlocksMusic([...blocksMusic, newBlockMusic]);
   }
@@ -26,6 +28,7 @@ function App() {
   }, []);
 
 
+
   if (ya_token) {
     return (
       <div className="App">
@@ -34,9 +37,8 @@ function App() {
         {
           blocksMusic.map(blockMusic => {
             return <BlockMusic
-              albumInfo={blockMusic}
+              trackInfo={blockMusic}
               create={createMusicBlock}
-            // key={blockMusic.id}
             />
           })
         }
