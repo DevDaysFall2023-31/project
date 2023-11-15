@@ -1,12 +1,7 @@
 from typing import List, Optional
 from pydantic import BaseModel
 from yandex_music import Track
-
-
-class GetArtistSchema(BaseModel):
-    id: int
-    name: Optional[str]
-    cover_url: Optional[str]
+from app.artists.schemas import GetArtistSchema
 
 
 class GetTrackSchema(BaseModel):
@@ -21,11 +16,7 @@ class GetTrackSchema(BaseModel):
             id=track.track_id,
             title=track.title,
             artists=[
-                GetArtistSchema(
-                    id=artist.id,
-                    name=artist.name,
-                    cover_url=f'{artist.cover.uri[:-2]}200x200' if artist.cover and artist.cover.uri else None,
-                ) for artist in track.artists
+                GetArtistSchema.from_artist(artist) for artist in track.artists
             ],
             cover_url=f'{track.cover_uri[:-2]}200x200' if track.cover_uri else None
         )
