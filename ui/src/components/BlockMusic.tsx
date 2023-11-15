@@ -11,15 +11,15 @@ import { GetPeakSchema } from "../generated";
 export const BlockMusic: FC<any> = ({ albumInfo, create }) => {
   const [tracks, setTracks] = useState<GetPeakSchema>();
 
-  useEffect(() => {
-    async function getTracks() {
-      const response = await api.Backend.getPeakPeaksTrackIdGet(albumInfo.id);
-      setTracks(response.data);
-    }
+  // useEffect(() => {
+  //   async function getTracks() {
+  //     const response = await api.Backend.getPeakPeaksTrackIdGet(albumInfo.id);
+  //     setTracks(response.data);
+  //   }
 
-    getTracks();
-  }, []);
-  console.log(tracks, albumInfo.id);
+  //   getTracks();
+  // }, []);
+  // console.log(tracks, albumInfo.id);
   // TODO
   return (
     <section

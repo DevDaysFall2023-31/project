@@ -29,7 +29,7 @@ export const BlockMain: FC<any> = ({ create }) => {
       <AlbumSet
         tracks={tracks?.tracks ?? []}
         create={create}
-        // count={tracks?.count ?? 0}
+      // count={tracks?.count ?? 0}
       />
     </section>
   )
