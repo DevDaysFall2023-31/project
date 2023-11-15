@@ -4,6 +4,7 @@ import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import App from '../App';
 import supabase from '../supabase';
+import '../styles/App.css';
 
 export default function AuthApp() {
   const [session, setSession] = useState<Session>()
@@ -23,14 +24,18 @@ export default function AuthApp() {
   }, [])
 
   if (!session) {
-    return (<Auth
-      supabaseClient={supabase}
-      appearance={{ theme: ThemeSupa }}
-      theme="dark"
-      queryParams={{
-        yaToken: 'sadasd'
-      }}
-    />)
+    return (
+      <div className="container block container-mini">
+        <Auth
+          supabaseClient={supabase}
+          appearance={{ theme: ThemeSupa }}
+          theme="dark"
+          queryParams={{
+            yaToken: 'sadasd'
+          }}
+        />
+      </div>
+    )
   }
   else {
     return (<App />)
