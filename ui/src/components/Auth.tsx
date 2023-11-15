@@ -30,9 +30,6 @@ export default function AuthApp() {
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           theme="dark"
-          queryParams={{
-            yaToken: 'sadasd'
-          }}
         />
       </div>
     )

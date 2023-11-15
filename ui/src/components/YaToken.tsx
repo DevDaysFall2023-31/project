@@ -1,8 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { UserAttributes } from '@supabase/supabase-js'
-import { Auth } from '@supabase/auth-ui-react'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
-import App from '../App';
+import React from 'react'
 import supabase from '../supabase';
 
 export class YaTokenForm extends React.Component {
@@ -22,7 +18,8 @@ export class YaTokenForm extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className="container block container-mini">
+        <h1>Введите ваш токен от Yandex Music:</h1>
         <form onSubmit={this.onSubmit}>
           <input
             type="text"
