@@ -1,39 +1,25 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { FC } from "react";
 import '../styles/App.css';
-import { BlockMusic } from "./BlockMusic";
 import music from "../assets/music.mp3";
+// @ts-ignore
+import useSound from 'use-sound';
+import { LinkCoverMusic } from "../assets/parser/LinkCoverMusic";
 
-export const AlbumItem: FC<any> = ({ albumInfo }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const playMusic = () => {
-    setIsPlaying(true);
-  }
-
-  const pauseMusic = () => {
-    setIsPlaying(false);
-  }
-
-  const [blocks, setBlocks] = useState<ReactNode[]>([]);
-
-  const handleClick = () => {
-    setBlocks([...blocks, <BlockMusic albumInfo={albumInfo} key={blocks.length} />]);
-  }
+export const AlbumItem: FC<any> = ({ albumInfo, create }) => {
+  const [play, { stop }] = useSound(music);
+    const addBlockMusic = () => {
+        create(albumInfo);
+    }
 
   return (
     <div className="album">
-      <audio
-        src={music}
-        autoPlay={isPlaying}
-      />
       <img
-        onClick={handleClick}
-        onMouseEnter={playMusic}
-        onMouseLeave={pauseMusic}
-        src={albumInfo.cover_url}
+        onClick={addBlockMusic}
+        onMouseEnter={() => play()}
+        onMouseLeave={() => stop()}
+        src={LinkCoverMusic(albumInfo.cover_url)}
         alt={albumInfo.title}
       />
-      {blocks}
     </div>
   )
 }
