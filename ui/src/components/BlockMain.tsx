@@ -6,13 +6,18 @@ import { AlbumSet } from "./AlbumSet";
 
 import api from '../api';
 import { GetTracksListSchema } from "../generated";
+import supabase from "../supabase";
 
 export const BlockMain: FC<any> = ({ create }) => {
   const [tracks, setTracks] = useState<GetTracksListSchema>();
 
   useEffect(() => {
     async function getTracks() {
-      const response = await api.Backend.getFavouriteTracksTracksFavouritesGet();
+      const response = await api.Backend.getFavouriteTracksTracksFavouritesGet({
+        headers: {
+          Authorization: 'Bearer ' + (await supabase.auth.getSession()).data.session.access_token
+        }
+      });
       setTracks(response.data);
     }
 
