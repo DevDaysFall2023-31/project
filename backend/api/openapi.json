@@ -62,6 +62,43 @@
         }
       }
     },
+    "/tracks/{track_id}/like": {
+      "post": {
+        "summary": "Post Like Track",
+        "operationId": "post_like_track_tracks__track_id__like_post",
+        "parameters": [
+          {
+            "name": "track_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Track Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/peaks/{track_id}": {
       "get": {
         "summary": "Get Peak",
