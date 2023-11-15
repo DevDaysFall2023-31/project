@@ -18,3 +18,6 @@ class TracksRepository:
     async def download_track(self, track_id: str, path: str) -> None:
         download_info = (await self.ya_music.tracks_download_info(track_id))[0]
         await download_info.download_async(path)
+    
+    async def like_track(self, track_id: str) -> None:
+        await self.ya_music.users_likes_tracks_add(track_id)

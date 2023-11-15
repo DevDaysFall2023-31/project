@@ -37,3 +37,18 @@ async def get_similar_tracks(
             status_code=HTTP_404_NOT_FOUND,
             detail=str(err),
         ) from err
+
+
+@router.post("/{track_id}/like")
+async def post_like_track(
+    track_id: str,
+    tracks_repo: Annotated[TracksRepository, Depends(get_tracks_repository)],
+) -> None:
+    try:
+        await tracks_repo.like_track(track_id)
+        return
+    except YandexMusicError as err:
+        raise HTTPException(
+            status_code=HTTP_404_NOT_FOUND,
+            detail=str(err),
+        ) from err
