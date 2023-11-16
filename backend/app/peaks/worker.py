@@ -42,7 +42,10 @@ class PeaksWorker:
             self.peaks_repo.add_peak(res_filename, track_id)
 
     async def crop_audio(self, track_id: str) -> None:
-        with self.redis.lock(f'crop-track-{track_id}', timeout=20):
+        with self.redis.lock(f'crop-track-{track_id}', timeout=20, blocking=False) as locked:
+            if not locked:
+                return
+
             peak = self.peaks_repo.get_peak(track_id)
             if peak:
                 log.info(f'stopping peak {track_id} crop as peak already exists')
