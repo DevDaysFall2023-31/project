@@ -22,7 +22,7 @@
 
 Архитектура, на которую мы ориентировались при разработке проекта. (На данный момент она такой и является)
 
-![alt text](https://github.com/DevDaysFall2023-31/project/picture/arch.png "Architecture")
+![alt text](https://github.com/DevDaysFall2023-31/project/blob/main/picture/arch.png "Architecture")
 
 ## Как запускать
 
