@@ -15,6 +15,7 @@ pydantic-settings = "^2.0.3"
 supabase = "^2.0.3"
 pydub = "^0.25.1"
 redis = "^5.0.1"
+backoff = "^2.2.1"
 
 
 [tool.poetry.group.dev.dependencies]

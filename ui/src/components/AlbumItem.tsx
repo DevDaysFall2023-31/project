@@ -36,10 +36,10 @@ export const AlbumItem: FC<any> = ({ albumInfo, create, count }) => {
         console.error(error);
       });
       if (response && response.data.download_url) {
-        let new_audio: HTMLAudioElement = new Audio(response.data.download_url);
-        setAudio(new_audio);
+        setAudio(new Audio(response.data.download_url));
       }
     }
+    touchPeak();
   }, []);
 
   const onMouseEnter = async () => {
@@ -57,8 +57,7 @@ export const AlbumItem: FC<any> = ({ albumInfo, create, count }) => {
         console.error(error);
       });
       if (response && response.data.download_url) {
-        let new_audio: HTMLAudioElement = new Audio(response.data.download_url);
-        setAudio(new_audio);
+        setAudio(new Audio(response.data.download_url));
       }
     }
   }
