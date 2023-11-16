@@ -55,7 +55,6 @@ class PeaksWorker:
 
             await self._crop_audio(track_id)
 
-    
     async def crop_audio_files(self, track_ids: List[str]) -> None:
         tasks = [self.crop_audio(track_id) for track_id in track_ids]
         await asyncio.gather(*tasks)

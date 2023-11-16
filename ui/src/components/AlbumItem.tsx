@@ -1,13 +1,17 @@
 import React, { FC, useEffect, useState } from "react";
 import '../styles/App.css';
-// @ts-ignore
-import useSound from 'use-sound';
 import { LinkCoverMusic } from "../assets/parser/LinkCoverMusic";
 import api from "../api";
 import supabase from "../supabase";
 
-export const AlbumItem: FC<any> = ({ albumInfo, create, count }) => {
+export const AlbumItem: FC<any> = ({ albumInfo, peak, create, count }) => {
   const [audio, setAudio] = useState<HTMLAudioElement>();
+
+  useEffect(() => {
+    if (peak) {
+      setAudio(new Audio(peak));
+    }
+  }, [peak]);
 
   const addBlockMusic = () => {
     create(albumInfo);
@@ -22,25 +26,6 @@ export const AlbumItem: FC<any> = ({ albumInfo, create, count }) => {
     }
     return "large";
   }
-
-  useEffect(() => {
-    async function touchPeak() {
-      const response = await api.Backend.getPeakPeaksTrackIdGet(
-        albumInfo.id,
-        {
-          headers: {
-            Authorization: 'Bearer ' + (await supabase.auth.getSession()).data.session.access_token
-          }
-        }
-      ).catch((error) => {
-        console.error(error);
-      });
-      if (response && response.data.download_url) {
-        setAudio(new Audio(response.data.download_url));
-      }
-    }
-    touchPeak();
-  }, []);
 
   const onMouseEnter = async () => {
     if (audio) {

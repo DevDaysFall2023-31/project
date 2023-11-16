@@ -40,13 +40,13 @@ async def get_peaks(
 ) -> GetPeakListSchema:
     peak_urls = peaks_repo.get_peaks(track_ids)
 
-    if None in peak_urls:
-        uncropped_ids = [track_ids[i] for i in range(len(track_ids)) if peak_urls[i] is None]
+    uncropped_ids = [track_ids[i] for i in range(len(track_ids)) if peak_urls[i] is None]
+    if len(uncropped_ids) > 0:
         asyncio.create_task(peaks_worker.crop_audio_files(uncropped_ids))
 
     return GetPeakListSchema(
         count=len(peak_urls),
-        download_url=[
+        peaks=[
             GetPeakSchema(
                 track_id=track_id,
                 download_url=peak_url,

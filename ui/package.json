@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "openapi": "openapi-generator-cli generate -i ../backend/api/openapi.json -g typescript-axios -o ./generated"
+    "openapi": "openapi-generator-cli generate -i ../backend/api/openapi.json -g typescript-axios -o ./src/generated"
   },
   "eslintConfig": {
     "extends": [
