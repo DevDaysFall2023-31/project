@@ -52,8 +52,9 @@ export const AlbumItem: FC<any> = ({ albumInfo, create, count }) => {
       ).catch((error) => {
         console.error(error);
       });
-      if (response) {
+      if (response && response.data.download_url) {
         setAudio(new Audio(response.data.download_url));
+        audio.play()
       }
     }
   }
