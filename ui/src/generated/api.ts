@@ -51,6 +51,44 @@ export interface GetArtistSchema {
 /**
  * 
  * @export
+ * @interface GetArtistsListSchema
+ */
+export interface GetArtistsListSchema {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetArtistsListSchema
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<GetArtistSchema>}
+     * @memberof GetArtistsListSchema
+     */
+    'artists': Array<GetArtistSchema>;
+}
+/**
+ * 
+ * @export
+ * @interface GetPeakListSchema
+ */
+export interface GetPeakListSchema {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetPeakListSchema
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<GetPeakSchema>}
+     * @memberof GetPeakListSchema
+     */
+    'peaks': Array<GetPeakSchema>;
+}
+/**
+ * 
+ * @export
  * @interface GetPeakSchema
  */
 export interface GetPeakSchema {
@@ -65,7 +103,51 @@ export interface GetPeakSchema {
      * @type {string}
      * @memberof GetPeakSchema
      */
-    'download_url': string;
+    'download_url': string | null;
+}
+/**
+ * 
+ * @export
+ * @interface GetPlaylistSchema
+ */
+export interface GetPlaylistSchema {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetPlaylistSchema
+     */
+    'id': number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPlaylistSchema
+     */
+    'title': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPlaylistSchema
+     */
+    'cover_url': string | null;
+}
+/**
+ * 
+ * @export
+ * @interface GetPlaylistsListSchema
+ */
+export interface GetPlaylistsListSchema {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetPlaylistsListSchema
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<GetPlaylistSchema>}
+     * @memberof GetPlaylistsListSchema
+     */
+    'playlists': Array<GetPlaylistSchema>;
 }
 /**
  * 
@@ -171,6 +253,44 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @summary Get Artist Tracks
+         * @param {string} artistId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getArtistTracksArtistsArtistIdTracksGet: async (artistId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'artistId' is not null or undefined
+            assertParamExists('getArtistTracksArtistsArtistIdTracksGet', 'artistId', artistId)
+            const localVarPath = `/artists/{artist_id}/tracks`
+                .replace(`{${"artist_id"}}`, encodeURIComponent(String(artistId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get Favourite Tracks
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -187,6 +307,44 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get My Playlists
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMyPlaylistsPlaylistsMyGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/playlists/my`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
 
 
     
@@ -222,6 +380,88 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get Peaks
+         * @param {Array<string>} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPeaksPeaksPost: async (requestBody: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('getPeaksPeaksPost', 'requestBody', requestBody)
+            const localVarPath = `/peaks`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get Playlist Tracks
+         * @param {string} playlistId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylistTracksPlaylistsPlaylistIdTracksGet: async (playlistId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'playlistId' is not null or undefined
+            assertParamExists('getPlaylistTracksPlaylistsPlaylistIdTracksGet', 'playlistId', playlistId)
+            const localVarPath = `/playlists/{playlist_id}/tracks`
+                .replace(`{${"playlist_id"}}`, encodeURIComponent(String(playlistId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -256,6 +496,130 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Post Like Track
+         * @param {string} trackId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postLikeTrackTracksTrackIdLikePost: async (trackId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'trackId' is not null or undefined
+            assertParamExists('postLikeTrackTracksTrackIdLikePost', 'trackId', trackId)
+            const localVarPath = `/tracks/{track_id}/like`
+                .replace(`{${"track_id"}}`, encodeURIComponent(String(trackId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Search Artists
+         * @param {string} search 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchArtistsArtistsGet: async (search: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'search' is not null or undefined
+            assertParamExists('searchArtistsArtistsGet', 'search', search)
+            const localVarPath = `/artists`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Search Playlists
+         * @param {string} search 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchPlaylistsPlaylistsGet: async (search: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'search' is not null or undefined
+            assertParamExists('searchPlaylistsPlaylistsGet', 'search', search)
+            const localVarPath = `/playlists`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2AuthorizationCodeBearer required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2AuthorizationCodeBearer", [], configuration)
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -279,6 +643,19 @@ export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Get Artist Tracks
+         * @param {string} artistId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getArtistTracksArtistsArtistIdTracksGet(artistId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTracksListSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getArtistTracksArtistsArtistIdTracksGet(artistId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.getArtistTracksArtistsArtistIdTracksGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Get Favourite Tracks
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -287,6 +664,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFavouriteTracksTracksFavouritesGet(options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.getFavouriteTracksTracksFavouritesGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get My Playlists
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMyPlaylistsPlaylistsMyGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPlaylistsListSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMyPlaylistsPlaylistsMyGet(options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.getMyPlaylistsPlaylistsMyGet']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
@@ -304,6 +693,32 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get Peaks
+         * @param {Array<string>} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPeaksPeaksPost(requestBody: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPeakListSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPeaksPeaksPost(requestBody, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.getPeaksPeaksPost']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get Playlist Tracks
+         * @param {string} playlistId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPlaylistTracksPlaylistsPlaylistIdTracksGet(playlistId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTracksListSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPlaylistTracksPlaylistsPlaylistIdTracksGet(playlistId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.getPlaylistTracksPlaylistsPlaylistIdTracksGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Get Similar Tracks
          * @param {string} trackId 
          * @param {*} [options] Override http request option.
@@ -313,6 +728,45 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSimilarTracksTracksTrackIdSimilarGet(trackId, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.getSimilarTracksTracksTrackIdSimilarGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Post Like Track
+         * @param {string} trackId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postLikeTrackTracksTrackIdLikePost(trackId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postLikeTrackTracksTrackIdLikePost(trackId, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.postLikeTrackTracksTrackIdLikePost']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Search Artists
+         * @param {string} search 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async searchArtistsArtistsGet(search: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetArtistsListSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchArtistsArtistsGet(search, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.searchArtistsArtistsGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Search Playlists
+         * @param {string} search 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async searchPlaylistsPlaylistsGet(search: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPlaylistsListSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchPlaylistsPlaylistsGet(search, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.searchPlaylistsPlaylistsGet']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
@@ -327,12 +781,31 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @summary Get Artist Tracks
+         * @param {string} artistId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getArtistTracksArtistsArtistIdTracksGet(artistId: string, options?: any): AxiosPromise<GetTracksListSchema> {
+            return localVarFp.getArtistTracksArtistsArtistIdTracksGet(artistId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Get Favourite Tracks
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getFavouriteTracksTracksFavouritesGet(options?: any): AxiosPromise<GetTracksListSchema> {
             return localVarFp.getFavouriteTracksTracksFavouritesGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get My Playlists
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMyPlaylistsPlaylistsMyGet(options?: any): AxiosPromise<GetPlaylistsListSchema> {
+            return localVarFp.getMyPlaylistsPlaylistsMyGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -346,6 +819,26 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @summary Get Peaks
+         * @param {Array<string>} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPeaksPeaksPost(requestBody: Array<string>, options?: any): AxiosPromise<GetPeakListSchema> {
+            return localVarFp.getPeaksPeaksPost(requestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get Playlist Tracks
+         * @param {string} playlistId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPlaylistTracksPlaylistsPlaylistIdTracksGet(playlistId: string, options?: any): AxiosPromise<GetTracksListSchema> {
+            return localVarFp.getPlaylistTracksPlaylistsPlaylistIdTracksGet(playlistId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Get Similar Tracks
          * @param {string} trackId 
          * @param {*} [options] Override http request option.
@@ -353,6 +846,36 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         getSimilarTracksTracksTrackIdSimilarGet(trackId: string, options?: any): AxiosPromise<GetTracksListSchema> {
             return localVarFp.getSimilarTracksTracksTrackIdSimilarGet(trackId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Post Like Track
+         * @param {string} trackId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postLikeTrackTracksTrackIdLikePost(trackId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.postLikeTrackTracksTrackIdLikePost(trackId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Search Artists
+         * @param {string} search 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchArtistsArtistsGet(search: string, options?: any): AxiosPromise<GetArtistsListSchema> {
+            return localVarFp.searchArtistsArtistsGet(search, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Search Playlists
+         * @param {string} search 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchPlaylistsPlaylistsGet(search: string, options?: any): AxiosPromise<GetPlaylistsListSchema> {
+            return localVarFp.searchPlaylistsPlaylistsGet(search, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -366,6 +889,18 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
 export class DefaultApi extends BaseAPI {
     /**
      * 
+     * @summary Get Artist Tracks
+     * @param {string} artistId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getArtistTracksArtistsArtistIdTracksGet(artistId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getArtistTracksArtistsArtistIdTracksGet(artistId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Get Favourite Tracks
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -373,6 +908,17 @@ export class DefaultApi extends BaseAPI {
      */
     public getFavouriteTracksTracksFavouritesGet(options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getFavouriteTracksTracksFavouritesGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get My Playlists
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getMyPlaylistsPlaylistsMyGet(options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getMyPlaylistsPlaylistsMyGet(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -389,6 +935,30 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
+     * @summary Get Peaks
+     * @param {Array<string>} requestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getPeaksPeaksPost(requestBody: Array<string>, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getPeaksPeaksPost(requestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get Playlist Tracks
+     * @param {string} playlistId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getPlaylistTracksPlaylistsPlaylistIdTracksGet(playlistId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getPlaylistTracksPlaylistsPlaylistIdTracksGet(playlistId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary Get Similar Tracks
      * @param {string} trackId 
      * @param {*} [options] Override http request option.
@@ -397,6 +967,42 @@ export class DefaultApi extends BaseAPI {
      */
     public getSimilarTracksTracksTrackIdSimilarGet(trackId: string, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getSimilarTracksTracksTrackIdSimilarGet(trackId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Post Like Track
+     * @param {string} trackId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public postLikeTrackTracksTrackIdLikePost(trackId: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).postLikeTrackTracksTrackIdLikePost(trackId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Search Artists
+     * @param {string} search 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public searchArtistsArtistsGet(search: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).searchArtistsArtistsGet(search, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Search Playlists
+     * @param {string} search 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public searchPlaylistsPlaylistsGet(search: string, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).searchPlaylistsPlaylistsGet(search, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

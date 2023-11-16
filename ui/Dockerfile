@@ -1,4 +1,4 @@
-FROM node:16.14 AS builder
+FROM node:16.11 AS builder
 WORKDIR /usr/src
 COPY package*.json ./
 RUN npm install

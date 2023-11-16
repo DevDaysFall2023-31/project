@@ -2,10 +2,12 @@ import logging
 import tempfile
 import redis
 import backoff
+import asyncio
 from pydub import AudioSegment
 from yandex_music.exceptions import TimedOutError
 from app.peaks.repository import PeaksRepository
 from app.tracks.repository import TracksRepository
+from typing import List
 
 log = logging.getLogger(__file__)
 
@@ -53,3 +55,6 @@ class PeaksWorker:
 
             await self._crop_audio(track_id)
 
+    async def crop_audio_files(self, track_ids: List[str]) -> None:
+        tasks = [self.crop_audio(track_id) for track_id in track_ids]
+        await asyncio.gather(*tasks)
