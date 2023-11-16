@@ -1,5 +1,5 @@
 import logging
-from typing import Optional
+from typing import Optional, List
 from supabase.client import Client as SupabaseClient
 
 log = logging.getLogger(__file__)
@@ -31,3 +31,6 @@ class PeaksRepository:
         self.supabase.storage.from_(self.bucket_name).upload(
             file=file, path=f"{id}.mp3", file_options={"content-type": "audio/mpeg"}
         )
+
+    def get_peaks(self, ids: List[str]) -> List[Optional[str]]:
+        return list(map(lambda id: self.get_peak(id), ids))
