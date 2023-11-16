@@ -1,5 +1,6 @@
 import logging
 from typing import Optional, List
+from storage3._sync.file_api import ListBucketFilesOptions
 from supabase.client import Client as SupabaseClient
 
 log = logging.getLogger(__file__)
@@ -19,9 +20,14 @@ class PeaksRepository:
         uploaded: set = set(
             map(
                 lambda d: d.get("name", None),
-                self.supabase.storage.from_(self.bucket_name).list(),
+                self.supabase.storage.from_(self.bucket_name).list(
+                    options={
+                        "limit": 100500,
+                    },
+                ),
             )
         )
+        log.info(uploaded)
         if f'{id}.mp3' not in uploaded:
             log.info(f'peak {id} not found')
             return None
@@ -39,7 +45,11 @@ class PeaksRepository:
         uploaded: set = set(
             map(
                 lambda d: d.get("name", None),
-                self.supabase.storage.from_(self.bucket_name).list(),
+                self.supabase.storage.from_(self.bucket_name).list(
+                    options={
+                        "limit": 100500,
+                    },
+                ),
             )
         )
 

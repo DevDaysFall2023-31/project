@@ -18,7 +18,7 @@ class GetTrackSchema(BaseModel):
             artists=[
                 GetArtistSchema.from_artist(artist) for artist in track.artists
             ],
-            cover_url=f'{track.cover_uri[:-2]}200x200' if track.cover_uri else None
+            cover_url=f'{track.cover_uri[:-2]}200x200' if track.cover_uri else None,
         )
 
 

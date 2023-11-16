@@ -10,8 +10,9 @@ import api from './api';
 
 function App() {
   const [blocksMusic, setBlocksMusic] = useState<GetTrackSchema[]>([]);
-  const createMusicBlock = (newBlockMusic: never) => {
-    setBlocksMusic([...blocksMusic, newBlockMusic]);
+  const createMusicBlock = (newBlockMusic: any, index: any) => {
+    const blocks = blocksMusic.slice(0, index);
+    setBlocksMusic([...blocks, newBlockMusic]);
   }
 
   const [ya_token, setYaToken] = useState<boolean>(false);
@@ -27,18 +28,17 @@ function App() {
     getYaToken();
   }, []);
 
-
-
   if (ya_token) {
     return (
       <div className="App">
         <Header />
         <BlockMain create={createMusicBlock} />
         {
-          blocksMusic.map(blockMusic => {
+          blocksMusic.map((blockMusic, index) => {
             return <BlockMusic
               trackInfo={blockMusic}
               create={createMusicBlock}
+              index={index + 1}
             />
           })
         }

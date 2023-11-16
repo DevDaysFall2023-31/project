@@ -5,27 +5,27 @@ import { GetTrackSchema, GetPeakListSchema } from "../generated";
 import api from "../api";
 import supabase from "../supabase";
 
-export const AlbumSet: FC<{ tracks: GetTrackSchema[], create: any, count: number }> = ({ tracks, create, count }) => {
+export const AlbumSet: FC<{ tracks: GetTrackSchema[], create: any, count: number, glob_index: number }> = ({ tracks, create, count, glob_index }) => {
   const [peaks, setPeaks] = useState<GetPeakListSchema>();
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    async function getPeaks() {
-      const peak_list = await api.Backend.getPeaksPeaksPost(
-        tracks.map((track) => track.id),
-        {
-          headers: {
-            Authorization: 'Bearer ' + (await supabase.auth.getSession()).data.session.access_token
-          }
-        }
-      );
-      console.assert(tracks.length === peak_list.data.count);
-      setPeaks(peak_list.data);
-    }
+  //   async function getPeaks() {
+  //     const peak_list = await api.Backend.getPeaksPeaksPost(
+  //       tracks.map((track) => track.id),
+  //       {
+  //         headers: {
+  //           Authorization: 'Bearer ' + (await supabase.auth.getSession()).data.session.access_token
+  //         }
+  //       }
+  //     );
+  //     console.assert(tracks.length === peak_list.data.count);
+  //     setPeaks(peak_list.data);
+  //   }
 
-    getPeaks();
+  //   getPeaks();
 
-  }, [tracks]);
+  // }, [tracks]);
 
   return (
     <div className="album-set">
@@ -37,6 +37,7 @@ export const AlbumSet: FC<{ tracks: GetTrackSchema[], create: any, count: number
             create={create}
             count={count}
             key={album.id}
+            index={glob_index}
           />
         })
       }
