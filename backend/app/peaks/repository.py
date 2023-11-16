@@ -23,7 +23,7 @@ class PeaksRepository:
 
         log.info(f'peak {id} found')
         return self.supabase.storage.from_(self.bucket_name).create_signed_url(
-            path=f"{id}.mp3", expires_in=60
+            path=f"{id}.mp3", expires_in=100500,
         )['signedURL']
 
     def add_peak(self, file: str, id: str):
