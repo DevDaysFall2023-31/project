@@ -9,7 +9,7 @@ log = logging.getLogger(__file__)
 
 class TracksRepository:
     key = 'YA_MUSIC'
-    limit = 20
+    limit = 50
     period = timedelta(seconds=2)
 
     def __init__(
@@ -21,20 +21,20 @@ class TracksRepository:
         self.redis = redis
 
     async def get_liked_tracks(self) -> List[Track]:
-        tracks = await self.ya_music.users_likes_tracks(timeout=100)
+        tracks = await self.ya_music.users_likes_tracks(timeout=2)
         tracks = (await tracks.fetch_tracks_async()) if tracks else []
         return tracks
 
     async def get_similar_tracks(self, track_id: str) -> List[Track]:
-        similar = await self.ya_music.tracks_similar(track_id, timeout=100)
+        similar = await self.ya_music.tracks_similar(track_id, timeout=2)
         return similar.similar_tracks if similar else []
 
     async def download_track(self, track_id: str, path: str) -> None:
         log.info(f'downloading track {track_id} to {path}')
-        if self.request_is_limited():
-            log.warn(f'request is limited')
-            return
-        download_info = (await self.ya_music.tracks_download_info(track_id, timeout=100))[0]
+        # if self.request_is_limited():
+        #     log.warn(f'request is limited')
+        #     return
+        download_info = (await self.ya_music.tracks_download_info(track_id, timeout=2))[0]
         await download_info.download_async(path)
 
     async def like_track(self, track_id: str) -> None:

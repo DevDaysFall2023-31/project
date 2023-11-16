@@ -4,7 +4,7 @@ import { LinkCoverMusic } from "../assets/parser/LinkCoverMusic";
 import api from "../api";
 import supabase from "../supabase";
 
-export const AlbumItem: FC<any> = ({ albumInfo, peak, create, count }) => {
+export const AlbumItem: FC<any> = ({ albumInfo, peak, create, count, index }) => {
   const [audio, setAudio] = useState<HTMLAudioElement>();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const AlbumItem: FC<any> = ({ albumInfo, peak, create, count }) => {
   }, [peak]);
 
   const addBlockMusic = () => {
-    create(albumInfo);
+    create(albumInfo, index);
   }
 
   const sizeName = (x: number): string => {
@@ -43,6 +43,7 @@ export const AlbumItem: FC<any> = ({ albumInfo, peak, create, count }) => {
       });
       if (response && response.data.download_url) {
         setAudio(new Audio(response.data.download_url));
+        audio.play();
       }
     }
   }

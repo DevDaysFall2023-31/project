@@ -87,7 +87,7 @@ h1 {
     color: var(--font-white);
     font-size: 48px;
     font-weight: 700;
-    line-height: 120%; 
+    line-height: 120%;
     margin-top: 40px;
     margin-bottom: 84px;
 }
@@ -195,6 +195,18 @@ h1 {
 }
 
 .activities>a {
+    display: flex;
+    align-items: center;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    color: var(--font-white);
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.activities>button {
     display: flex;
     align-items: center;
     border-radius: 32px;

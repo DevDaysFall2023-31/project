@@ -9,7 +9,7 @@ import api from '../api';
 import { GetPeakSchema, GetTrackSchema, GetTracksListSchema } from "../generated";
 import supabase from "../supabase";
 
-export const BlockMusic: FC<{ trackInfo: GetTrackSchema, create: any }> = ({ trackInfo, create }) => {
+export const BlockMusic: FC<{ trackInfo: GetTrackSchema, create: any, index: number }> = ({ trackInfo, create, index }) => {
   const [similar, setSimilar] = useState<GetTracksListSchema>();
 
   useEffect(() => {
@@ -25,7 +25,21 @@ export const BlockMusic: FC<{ trackInfo: GetTrackSchema, create: any }> = ({ tra
     }
 
     getSimilarTracks();
-  }, []);
+  }, [trackInfo.id]);
+
+  const onLikeClick = async () => {
+    await api.Backend.postLikeTrackTracksTrackIdLikePost(
+      trackInfo.id,
+      {
+        headers: {
+          Authorization: 'Bearer ' + (await supabase.auth.getSession()).data.session.access_token
+        }
+      }
+    );
+  }
+
+  const [trackId, albumId] = trackInfo.id.split(':');
+  const yaMusicLink = "https://music.yandex.ru/album/" + albumId + "/track/" + trackId;
 
   return (
     <section
@@ -40,8 +54,8 @@ export const BlockMusic: FC<{ trackInfo: GetTrackSchema, create: any }> = ({ tra
         <div className="music-info">
           <h2 className="music-title">{trackInfo.title}</h2>
           <div className="activities">
-            <a href="#"><img src={Play.toString()} alt="y.music" /><span>Я.Музыка</span></a>
-            <a href="#"><img src={Like.toString()} alt="mark" /></a>
+            <a href={yaMusicLink}><img src={Play.toString()} alt="y.music" /><span>Я.Музыка</span></a>
+            <button onClick={onLikeClick}><img src={Like.toString()} alt="mark" /></button>
           </div>
         </div>
       </div>
@@ -49,7 +63,8 @@ export const BlockMusic: FC<{ trackInfo: GetTrackSchema, create: any }> = ({ tra
         tracks={similar?.tracks ?? []}
         create={create}
         count={similar?.count ?? 0}
+        glob_index={index}
       />
-    </section>
+    </section >
   )
 }

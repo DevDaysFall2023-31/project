@@ -33,6 +33,7 @@ export const BlockMain: FC<any> = ({ create }) => {
         tracks={tracks?.tracks ?? []}
         create={create}
         count={tracks?.count ?? 0}
+        glob_index={0}
       />
     </section>
   )
