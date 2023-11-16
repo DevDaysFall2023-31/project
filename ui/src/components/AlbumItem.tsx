@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import '../styles/App.css';
 // @ts-ignore
 import useSound from 'use-sound';
@@ -23,6 +23,25 @@ export const AlbumItem: FC<any> = ({ albumInfo, create, count }) => {
     return "large";
   }
 
+  useEffect(() => {
+    async function touchPeak() {
+      const response = await api.Backend.getPeakPeaksTrackIdGet(
+        albumInfo.id,
+        {
+          headers: {
+            Authorization: 'Bearer ' + (await supabase.auth.getSession()).data.session.access_token
+          }
+        }
+      ).catch((error) => {
+        console.error(error);
+      });
+      if (response && response.data.download_url) {
+        setAudio(new Audio(response.data.download_url));
+      }
+    }
+    touchPeak();
+  }, []);
+
   const onMouseEnter = async () => {
     if (audio) {
       audio.play()
@@ -37,7 +56,7 @@ export const AlbumItem: FC<any> = ({ albumInfo, create, count }) => {
       ).catch((error) => {
         console.error(error);
       });
-      if (response) {
+      if (response && response.data.download_url) {
         setAudio(new Audio(response.data.download_url));
       }
     }

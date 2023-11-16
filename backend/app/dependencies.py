@@ -5,6 +5,7 @@ from gotrue import UserResponse
 from starlette import status
 from supabase.client import Client as SupabaseClient, create_client
 from yandex_music import ClientAsync as YandexMusicClient
+import redis
 
 from app.settings import AppSettings
 
@@ -23,6 +24,14 @@ async def get_settings() -> AppSettings:
 
 async def get_supabase(settings: Annotated[AppSettings, Depends(get_settings)]) -> SupabaseClient:
     return create_client(settings.supabase_address, settings.supabase_key)
+
+
+async def get_redis(settings: Annotated[AppSettings, Depends(get_settings)]) -> redis.Redis:
+    return redis.Redis(
+        host=settings.redis_host,
+        port=settings.redis_port,
+        password=settings.redis_password,
+    )
 
 
 def get_auth_user(

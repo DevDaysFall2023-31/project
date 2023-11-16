@@ -17,6 +17,7 @@ services:
     depends_on:
       - api
       - ui
+      - cache
     environment:
       GW_API_URL: http://api
       GW_SUPABASE_URL: "${SUPABASE_ADDRESS}"
@@ -30,6 +31,8 @@ services:
     build:
       context: ui
       network: host
+    depends_on:
+      - api
     env_file:
       - .env
 
@@ -39,3 +42,21 @@ services:
       network: host
     env_file:
       - .env
+    environment:
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+    depends_on:
+      - cache
+
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    env_file:
+      - .env
+    command: "redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}"
+    volumes:
+      - cache:/data
+
+volumes:
+  cache:
+    driver: local
