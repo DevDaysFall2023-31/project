@@ -1,23 +1,57 @@
 # project
 
-## Start
+## Состав команды
 
-> Prerequisites:
-> - docker, docker compose
-> - supabase cli (for local development)
+| ФИО               | Роль                              |
+|:------------------|:----------------------------------|
+| Шишацкий Михаил   | Тимлид, бэкенд разработчик        |
+| Щетинин Владислав | Фронтенд разработчик              |
+| Киреев Александр  | Бэкенд разработчик                |
 
-1. Configure environment
+## Идея
+
+В эпоху spotify был замечательный сайт [discoverquickly](https://discoverquickly.com/), где можно было очень быстро добираться до потаенных уголков спотифая и быстро находить себе новую музыку.
+
+Данный проект является похожим сервисом, но для Яндекс Музыки. Он позволяет прослушивать превью треков, находить похожие треки, лайкать приглянувшиеся треки в Я.Музыке.
+
+## Вики
+
+[Тык](https://cs-uni.ru/index.php?title=DDF23_Слышно_и_точка)
+
+## Набросок архитектуры
+
+Архитектура, на которую мы ориентировались при разработке проекта. (На данный момент она такой и является)
+
+![alt text](https://github.com/DevDaysFall2023-31/project/picture/arch.png "Architecture")
+
+## Как запускать
+
+**Шаги для запуска указаны для MacOS/Linux**
+
+Что должно быть установлено для успешного запуска:
+- git
+- docker, docker compose
+- supabase cli (for local development)
+
+Шаги для запуска:
+
+1. Клонирование репозитория
+```
+git clone git@github.com:DevDaysFall2023-31/project.git
+```
+
+2. Конфигурация .env файла
 ```
 cp .env.local .env
 vim .env
 ```
 
-**If you want to run service via docker you should change localhost ip address in .env file to host ip.** You can do it using setup_ip.sh script:
+Для успешного развертывания сервиса необходимо поменять ip адрес supabase в .env файле на локальный ip адрес хоста. Иначе могут возникнуть проблемы с подключением бекэнда к supabase. Для автоматической конфигурации предлагается выполнить скрипт, который автоматически проставит ip адрес:
 ```
 ./setup_ip.sh .env
 ```
 
-2. Build images and start
+3. Сборка и запуск контейнера 
 ```
 supabase start
 supabase db reset
