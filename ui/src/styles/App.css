@@ -213,3 +213,231 @@ h1 {
     font-weight: 400;
     line-height: 120%;
 }
+
+/* YaToken */
+
+:root, .t-jmtZdH {
+    --colors-brand: hsl(153 60.0% 53.0%);
+    --colors-brandAccent: hsl(154 54.8% 45.1%);
+    --colors-brandButtonText: white;
+    --colors-defaultButtonBackground: white;
+    --colors-defaultButtonBackgroundHover: #eaeaea;
+    --colors-defaultButtonBorder: lightgray;
+    --colors-defaultButtonText: gray;
+    --colors-dividerBackground: #eaeaea;
+    --colors-inputBackground: transparent;
+    --colors-inputBorder: lightgray;
+    --colors-inputBorderHover: gray;
+    --colors-inputBorderFocus: gray;
+    --colors-inputText: black;
+    --colors-inputLabelText: gray;
+    --colors-inputPlaceholder: darkgray;
+    --colors-messageText: #2b805a;
+    --colors-messageBackground: #e7fcf1;
+    --colors-messageBorder: #d0f3e1;
+    --colors-messageTextDanger: #ff6369;
+    --colors-messageBackgroundDanger: #fff8f8;
+    --colors-messageBorderDanger: #822025;
+    --colors-anchorTextColor: gray;
+    --colors-anchorTextHoverColor: darkgray;
+    --space-spaceSmall: 4px;
+    --space-spaceMedium: 8px;
+    --space-spaceLarge: 16px;
+    --space-labelBottomMargin: 8px;
+    --space-anchorBottomMargin: 4px;
+    --space-emailInputSpacing: 4px;
+    --space-socialAuthSpacing: 4px;
+    --space-buttonPadding: 10px 15px;
+    --space-inputPadding: 10px 15px;
+    --fontSizes-baseBodySize: 13px;
+    --fontSizes-baseInputSize: 14px;
+    --fontSizes-baseLabelSize: 14px;
+    --fontSizes-baseButtonSize: 14px;
+    --fonts-bodyFontFamily: ui-sans-serif, sans-serif;
+    --fonts-buttonFontFamily: ui-sans-serif, sans-serif;
+    --fonts-inputFontFamily: ui-sans-serif, sans-serif;
+    --fonts-labelFontFamily: ui-sans-serif, sans-serif;
+    --borderWidths-buttonBorderWidth: 1px;
+    --borderWidths-inputBorderWidth: 1px;
+    --radii-borderRadiusButton: 4px;
+    --radii-buttonBorderRadius: 4px;
+    --radii-inputBorderRadius: 4px;
+}
+
+:root, .t-jmtZdH {
+    --colors-brand: hsl(153 60.0% 53.0%);
+    --colors-brandAccent: hsl(154 54.8% 45.1%);
+    --colors-brandButtonText: white;
+    --colors-defaultButtonBackground: white;
+    --colors-defaultButtonBackgroundHover: #eaeaea;
+    --colors-defaultButtonBorder: lightgray;
+    --colors-defaultButtonText: gray;
+    --colors-dividerBackground: #eaeaea;
+    --colors-inputBackground: transparent;
+    --colors-inputBorder: lightgray;
+    --colors-inputBorderHover: gray;
+    --colors-inputBorderFocus: gray;
+    --colors-inputText: black;
+    --colors-inputLabelText: gray;
+    --colors-inputPlaceholder: darkgray;
+    --colors-messageText: #2b805a;
+    --colors-messageBackground: #e7fcf1;
+    --colors-messageBorder: #d0f3e1;
+    --colors-messageTextDanger: #ff6369;
+    --colors-messageBackgroundDanger: #fff8f8;
+    --colors-messageBorderDanger: #822025;
+    --colors-anchorTextColor: gray;
+    --colors-anchorTextHoverColor: darkgray;
+    --space-spaceSmall: 4px;
+    --space-spaceMedium: 8px;
+    --space-spaceLarge: 16px;
+    --space-labelBottomMargin: 8px;
+    --space-anchorBottomMargin: 4px;
+    --space-emailInputSpacing: 4px;
+    --space-socialAuthSpacing: 4px;
+    --space-buttonPadding: 10px 15px;
+    --space-inputPadding: 10px 15px;
+    --fontSizes-baseBodySize: 13px;
+    --fontSizes-baseInputSize: 14px;
+    --fontSizes-baseLabelSize: 14px;
+    --fontSizes-baseButtonSize: 14px;
+    --fonts-bodyFontFamily: ui-sans-serif, sans-serif;
+    --fonts-buttonFontFamily: ui-sans-serif, sans-serif;
+    --fonts-inputFontFamily: ui-sans-serif, sans-serif;
+    --fonts-labelFontFamily: ui-sans-serif, sans-serif;
+    --borderWidths-buttonBorderWidth: 1px;
+    --borderWidths-inputBorderWidth: 1px;
+    --radii-borderRadiusButton: 4px;
+    --radii-buttonBorderRadius: 4px;
+    --radii-inputBorderRadius: 4px;
+}
+
+.t-deGdmh {
+    --colors-brandButtonText: white;
+    --colors-defaultButtonBackground: #2e2e2e;
+    --colors-defaultButtonBackgroundHover: #3e3e3e;
+    --colors-defaultButtonBorder: #3e3e3e;
+    --colors-defaultButtonText: white;
+    --colors-dividerBackground: #2e2e2e;
+    --colors-inputBackground: #1e1e1e;
+    --colors-inputBorder: #3e3e3e;
+    --colors-inputBorderHover: gray;
+    --colors-inputBorderFocus: gray;
+    --colors-inputText: white;
+    --colors-inputPlaceholder: darkgray;
+    --colors-messageText: #85e0b7;
+    --colors-messageBackground: #072719;
+    --colors-messageBorder: #2b805a;
+    --colors-messageBackgroundDanger: #1f1315;
+}
+
+.c-jTXIoq-bXHFxK-gap-large {
+    gap: 16px;
+}
+
+.c-jTXIoq-bsgKCL-direction-vertical {
+    flex-direction: column;
+    margin: 8px 0px;
+}
+
+.c-jTXIoq {
+    display: flex;
+    gap: 4px;
+}
+
+.c-bpexlo {
+    font-family: var(--fonts-labelFontFamily);
+    font-size: var(--fontSizes-baseLabelSize);
+    margin-bottom: var(--space-labelBottomMargin);
+    color: var(--colors-inputLabelText);
+    display: block;
+}
+
+.c-dEnagJ-bBzSYw-type-default {
+    letter-spacing: 0px;
+}
+
+.c-dEnagJ {
+    transition-property: background-color, border;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 100ms;
+}
+
+.c-dEnagJ {
+    font-family: var(--fonts-inputFontFamily);
+    background: var(--colors-inputBackground);
+    border-radius: var(--radii-inputBorderRadius);
+    padding: var(--space-inputPadding);
+    cursor: text;
+    border-width: var(--borderWidths-inputBorderWidth);
+    border-color: var(--colors-inputBorder);
+    border-style: solid;
+    font-size: var(--fontSizes-baseInputSize);
+    width: 100%;
+    color: var(--colors-inputText);
+    box-sizing: border-box;
+}
+
+.c-bOcPnF-cmFMMs-color-primary {
+    background-color: var(--colors-brand);
+    color: var(--colors-brandButtonText);
+    border-color: var(--colors-brandAccent);
+}
+
+.c-bOcPnF {
+    font-family: var(--fonts-buttonFontFamily);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--radii-borderRadiusButton);
+    font-size: var(--fontSizes-baseButtonSize);
+    padding: var(--space-buttonPadding);
+    cursor: pointer;
+    border-width: var(--borderWidths-buttonBorderWidth);
+    border-style: solid;
+    width: 100%;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 100ms;
+}
+
+.c-dumjqv {
+    font-family: var(--fonts-bodyFontFamily);
+    font-size: var(--fontSizes-baseBodySize);
+    margin-bottom: var(--space-anchorBottomMargin);
+    color: var(--colors-anchorTextColor);
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.c-dEnagJ:focus {
+    border-color: var(--colors-inputBorderFocus);
+    outline: none;
+}
+
+.c-dEnagJ:hover {
+    border-color: var(--colors-inputBorderHover);
+    outline: none;
+}
+
+.c-bOcPnF-cmFMMs-color-primary:hover:not(:disabled) {
+    background-color: var(--colors-brandAccent);
+}
+
+.c-dumjqv:hover {
+    color: var(--colors-anchorTextHoverColor);
+}
+
+.c-kbVGyA {
+    background: var(--colors-dividerBackground);
+    display: block;
+    margin: 16px 0px;
+    height: 1px;
+    width: 100%;
+}
+
+.t-deGdmh h1 {
+    margin-bottom: 4px;
+}
