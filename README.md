@@ -1,4 +1,4 @@
-# project
+# Слышно и точка.
 
 ## Состав команды
 
@@ -51,7 +51,7 @@ vim .env
 ./setup_ip.sh .env
 ```
 
-3. Сборка и запуск контейнера 
+3. Сборка и запуск контейнера
 ```
 supabase start
 supabase db reset
